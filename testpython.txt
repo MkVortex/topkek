@@ -1,0 +1,90 @@
+import turtle
+#amul=turtle.Turtle()
+#wn = turtle.Screen
+#wn.bgpic("lol.gif")
+from numpy import *
+
+def tl():
+    turtle.right(270)
+nd=0
+turtle.speed(10)
+
+def tour_disques(n):
+    for i in range (0,3):
+        if i == 0:
+            turtle.up()
+            turtle.goto(-550,-150)
+            turtle.down()
+            turtle.right(180)
+            turtle.forward(450)
+            turtle.rt(90)
+            turtle.forward(25)
+            turtle.rt(90)
+            turtle.forward(450)
+        else:
+            turtle.up()
+            turtle.goto(-550+350*(i),-150)
+            turtle.down()
+            turtle.right(180)
+            turtle.forward(450)
+            turtle.rt(90)
+            turtle.forward(25)
+            turtle.rt(90)
+            turtle.forward(450)
+            
+    #Iteration pour le dessin des disques
+    lmin=75
+    lmax=180
+    hmax=240
+    ddl=linspace(lmax,lmin,n)
+    ddw=hmax/n
+    turtle.up()
+    tl()
+    turtle.goto(-625,-150)
+    for j in range(3):
+        for disc in range(n):
+            turtle.down()
+            for i in range(2):
+                turtle.forward(ddl[disc])
+                turtle.left(90)
+                turtle.forward(ddw)
+                turtle.left(90)
+            turtle.up()
+            turtle.forward((ddl[disc]-ddl[disc+1])/2)
+            turtle.left(90)
+            turtle.forward(ddw)
+            turtle.right(90)
+        turtle.right(90)
+        turtle.forward(hmax-ddw)
+        turtle.left(90)
+        turtle.forward(200)
+
+
+            
+def dessine_plateau(n):
+    #Position initiale 
+    turtle.color("red")
+    turtle.up()
+    turtle.goto(-675,-200)
+    turtle.down()
+
+    #Dessin du plateau 
+    turtle.forward(1000)
+    tl()
+    turtle.forward(50)
+    tl()
+    turtle.forward(1000)
+    tl()
+    turtle.forward(50)
+
+def dessine_disque(nd,plateau,n):
+    dessine_plateau(n)
+    tour_disques(n)
+    
+    
+    
+
+
+n = int(input("Enter a number of discs"))
+dessine_plateau(n)
+tour_disques(n)
